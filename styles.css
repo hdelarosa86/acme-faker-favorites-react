@@ -1,16 +1,16 @@
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.user{
-    margin: 1rem 0;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
+.user {
+  margin: 1rem 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
-.underlined{
-    text-decoration: underline;
+.underlined {
+  text-decoration: underline;
 }
-.favorite{
-    background-color: tomato;
-    color: white;
+.favorite {
+  background-color: tomato;
+  color: white;
 }
