@@ -17,9 +17,10 @@ class List extends React.Component {
   render() {
     const addUser = () => {
       const user = faker.helpers.createCard();
-      user.isFavorite = false;
+      user.isFavorite = true;
       this.state.users.unshift(user);
       const addedUser = this.state.users;
+      updateCount(this.state.users);
       this.setState({
         users: addedUser,
       });
@@ -32,11 +33,18 @@ class List extends React.Component {
         }
         return ele;
       });
-      let count = newUsers.filter((ele) => {
+
+      this.setState({
+        users: newUsers,
+      });
+      updateCount(this.state.users);
+    };
+
+    const updateCount = (arr) => {
+      let count = arr.filter((ele) => {
         return ele.isFavorite;
       }).length;
       this.setState({
-        users: newUsers,
         favUsers: count,
       });
     };
@@ -44,17 +52,20 @@ class List extends React.Component {
     return (
       <div className="container">
         <h1>Acme Faker Favorites</h1>
-        <h2 className="underlined" onClick={addUser}>
+        <h2 className="underlined">
           You have {this.state.favUsers} favorite users!
         </h2>
+        <button onClick={addUser}>Add New Favorite User</button>
         {this.state.users.map((obj, idx) => {
           return (
             <div
-              className="user"
+              className={`${obj.isFavorite ? 'favorite' : ''} user`}
               onClick={(ev) => {
                 this.state.users[idx].isFavorite
                   ? ev.target.classList.remove('favorite')
                   : ev.target.classList.add('favorite');
+                //  ? this.state.users[idx].isFavorite = false
+                //  : this.state.users[idx].isFavorite = true
                 updateUsers(this.state.users, idx);
               }}
               key={idx}
